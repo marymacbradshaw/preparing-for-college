@@ -1,0 +1,709 @@
+  <!DOCTYPE html>
+
+<html>
+
+<link rel="stylesheet" href="styles.css">
+
+  <head>
+
+    <script>
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+  }
+
+  window.smoothScroll = function(target) {
+      var scrollContainer = target;
+      do { //find scroll container
+        scrollContainer = scrollContainer.parentNode;
+        if (!scrollContainer) return;
+        scrollContainer.scrollTop += 1;
+    } while (scrollContainer.scrollTop == 0);
+
+    var targetY = -100;
+    do { //find the top of target relatively to the container
+        if (target == scrollContainer) break;
+        targetY += target.offsetTop;
+    } while (target = target.offsetParent);
+
+    scroll = function(c, a, b, i) {
+        i++; if (i > 30) return;
+        c.scrollTop = a + (b - a) / 30 * i;
+        setTimeout(function(){ scroll(c, a, b, i); }, 20);
+    }
+    // start scrolling
+    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+}
+    </script>
+
+    <style>
+      img {
+        opacity: 0.7;
+        filter: alpha(opacity=20);
+      }
+
+      img:hover {
+        opacity: 1.0;
+        filter: alpha(opacity=100);
+      }
+
+      img:hover + #text {
+        font-size: 40px;
+        border: 4px solid black;
+        font-weight: bolder;
+      }
+
+      .centered {
+        font-size: 30px;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 4px solid black;
+        padding: 3px;
+        font-weight: bold;
+      }
+
+      html, body {
+        padding:0;
+        margin:0;
+      }
+
+      body {
+        color:black;
+        padding:0;
+        margin:0;
+      }
+
+      .boxed {
+        border: 1px solid black;
+      }
+
+      @media screen and (max-width: 600px) {
+        .topnav.responsive {position: relative;}
+        .topnav.responsive a.icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        .topnav.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+      }
+
+      *, *:before, *:after {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+
+
+
+      .dropbtn {
+          position: relative;
+          cursor: pointer;
+          border: none;
+      }
+
+      .dropdown {
+        position: relative;
+        display: block;
+        /* inline-block; */
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #000000;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(85, 85, 85, 0.95);
+        z-index: 1;
+        right:0;
+      }
+
+      .dropdown-content a {
+        color: #ffffff;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {color: #cc147f}
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+        cursor: pointer;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+      }
+
+      h1 { /* here's the sitch .. pink light font */
+        font-family: "metropolis-semibold", sans-serif;
+        font-size: 18px;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        letter-spacing: 0.25rem;
+        color: #cc147f;
+        margin-top: 175px;
+        margin-bottom: 10px;
+        padding-left: 175px;
+        font-weight: 400;
+      }
+
+      .subhead1 {
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: white;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+        margin-bottom: 3rem;
+      }
+
+      .one { /* in recent years .. light font */
+        color: rgba(85, 85, 85, 0.95);
+        font-family: "metropolis-regular", sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 300;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-bottom: 190px;
+        line-height: 1.5;
+        letter-spacing: 0.1rem;
+      }
+
+      h2 { /* pink light font .. tip number 1 */
+        background-color: #F0F0F0;
+        font-size: 18px;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 175px;
+        padding-bottom: 20px;
+        margin:0;
+        color: #cc147f;
+        font-family: "metropolis-regular", sans-serif;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.25rem;
+      }
+
+      .subhead2 {
+        /* your high school career .. bold */
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: #F0F0F0;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+      }
+
+      .two { /* don't wait until the fall of .. */
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #F0F0F0;
+        font-size: 24px;
+        font-weight: lighter;
+        line-height: 1.5;
+        padding-top: 50px;
+        padding-bottom: 200px;
+        padding-left: 175px;
+        padding-right: 200px;
+        letter-spacing: 0.1rem;
+      }
+
+      h3 {
+        background-color: white;
+        font-size: 18px;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 175px;
+        padding-bottom: 20px;
+        margin:0;
+        color: #cc147f;
+        font-family: "metropolis-regular", sans-serif;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.25rem;
+      }
+
+      .subhead3 {
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: white;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 10px;
+      }
+
+      .three {
+        color: rgba(85, 85, 85, 0.95);
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        font-size: 24px;
+        font-weight: lighter;
+        line-height: 1.5;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 50px;
+        letter-spacing: 0.1rem;
+        padding-bottom: 75px;
+      }
+
+      .column {
+        float: left;
+        width: 33.33%;
+        padding-left: 150px;
+        /* padding-right: 20px; */
+        margin-right: 8px;
+      }
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .resume_facts {
+        color: rgba(85, 85, 85, 0.95);
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        font-size: 24px;
+        font-weight:  lighter;
+        line-height: 1.5;
+        padding-bottom: 200px;
+        padding-left: 175px;
+        padding-right: 100px;
+        letter-spacing: 0.1rem;
+        padding-top: 20px;
+      }
+
+      h4 {
+        background-color: #F0F0F0;
+        font-size: 18px;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 175px;
+        padding-bottom: 20px;
+        margin:0;
+        color: #cc147f;
+        font-family: "metropolis-regular", sans-serif;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.25rem;
+      }
+
+      .subhead4 {
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: #F0F0F0;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+      }
+
+      .four {
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #F0F0F0;
+        font-size: 24px;
+        font-weight: lighter;
+        line-height: 1.5;
+        padding-top: 50px;
+        padding-bottom: 200px;
+        padding-left: 175px;
+        padding-right: 200px;
+        letter-spacing: 0.1rem;
+      }
+
+      h5 {
+        background-color: white;
+        font-size: 18px;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 175px;
+        padding-bottom: 0px;
+        margin:0;
+        color: #cc147f;
+        font-family: "metropolis-regular", sans-serif;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.25rem;
+        padding-bottom: 20px;
+      }
+
+      .subhead5 {
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: white;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+      }
+
+      .five {
+        color: rgba(85, 85, 85, 0.95);
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        font-size: 24px;
+        font-weight: lighter;
+        line-height: 1.5;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 50px;
+        padding-bottom: 200px;
+        letter-spacing: 0.1rem;
+      }
+
+      h6 {
+        background-color: #F0F0F0;
+        font-size: 18px;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 175px;
+        padding-bottom: 20px;
+        margin:0;
+        color: #cc147f;
+        font-family: "metropolis-regular", sans-serif;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.25rem;
+      }
+
+      .subhead6 {
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: #F0F0F0;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+      }
+
+      .six {
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #F0F0F0;
+        font-size: 24px;
+        font-weight: lighter;
+        line-height: 1.5;
+        padding-top: 50px;
+        padding-bottom: 200px;
+        padding-left: 175px;
+        padding-right: 200px;
+        letter-spacing: 0.1rem;
+      }
+
+      .h7 {
+        background-color: white;
+        font-size: 18px;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 175px;
+        padding-bottom: 0px;
+        margin:0;
+        color: #cc147f;
+        font-family: "metropolis-regular", sans-serif;
+        line-height: 1.3125;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.25rem;
+        padding-bottom: 20px;
+      }
+
+      .subhead7 {
+        color: #000000;
+        font-family: 'Merriweather', serif;
+        background-color: white;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: bold;
+        padding-left: 175px;
+        padding-right: 200px;
+      }
+
+      .seven {
+        color: rgba(85, 85, 85, 0.95);
+        font-family: "metropolis-regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        font-size: 24px;
+        font-weight: lighter;
+        line-height: 1.5;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-top: 50px;
+        padding-bottom: 200px;
+        letter-spacing: 0.1rem;
+      }
+
+      .h8 {
+          background-color: #000000;
+          font-size: 18px;
+          padding-left: 175px;
+          padding-right: 200px;
+          padding-top: 300px;
+          padding-bottom: 20px;
+          margin:0;
+          color: #cc147f;
+          font-family: "metropolis-regular", sans-serif;
+          line-height: 1.3125;
+          text-transform: uppercase;
+          font-weight: 400;
+          letter-spacing: 0.25rem;
+      }
+
+      .subhead8 {
+        color: #FFFFFF;
+        font-family: 'Merriweather', serif;
+        background-color: #000000;
+        font-size: 60px;
+        font-style: normal;
+        font-variant-ligatures: common-ligatures;
+        line-height: 1.2;
+        letter-spacing: -0.03rem;
+        margin-top: 0;
+        font-weight: 550;
+        padding-left: 175px;
+        padding-right: 200px;
+        padding-bottom: 50px;
+      }
+
+    </style>
+  </head>
+
+  <title>Preparing for College</title>
+  <body>
+
+    <div class="home">
+    <div class="container">
+      <img src="pinterest4.jpg" alt="pinterest pens"
+        style="width:1450px;height:400px">
+      <div class="centered" id="text">Preparing for College</div>
+    </div> </div>
+<!--
+        <div class="drobtn"></div>
+        <div class="dropbtn"></div>
+        <div class="dropbtn"></div> -->
+
+        <div class="dropdown" style="float:right;">
+          <button class="dropbtn"
+          style="float:right;padding-right:20px;">Menu</button>
+          <div class="dropdown-content">
+            <!-- <div class="topnav" id="myTopnav"> -->
+              <a onclick="smoothScroll(document.getElementById('home'))">/ home</a>
+              <a onclick="smoothScroll(document.getElementById('intro'))">/ intro </a>
+              <a onclick="smoothScroll(document.getElementById('testing'))">/ testing</a>
+              <a onclick="smoothScroll(document.getElementById('resume'))">/ resume</a>
+              <a onclick="smoothScroll(document.getElementById('research'))">/ research</a>
+              <a onclick="smoothScroll(document.getElementById('summer'))">/ summer</a>
+              <a onclick="smoothScroll(document.getElementById('time'))">/ time</a>
+              <a onclick="smoothScroll(document.getElementById('self_care'))">/ self care</a>
+              <a onclick="smoothScroll(document.getElementById('contact'))">/ contact</a>
+              <!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i> </a> -->
+          </div>
+        </div>
+
+    <section id="intro">
+    <div class='intro'>
+    <h1>/ here's the sitch<br></br></h1>
+      <div class="subhead1">
+        Your high school career doesn't determine the outcome of your future, but take advantage.
+      </div>
+      <div class="one" id="one">
+        In recent years, academic achievement has become more important than ever before. Pressure for good grades, whether it’s from your parents or teachers or even from yourself, can leave students incredibly stressed. Not to mention, the stigma of a well-rounded resume can cause students to be completely consumed with costly standardized test preparation programs, challenging college-level classes, and demanding extracurriculars. Just like you, we have experience going through this process and a lot of the same things. No matter how you take on your junior and senior years, just make sure you are not overdoing yourself. Give yourself room to breath, room to prosper, and room to enjoy this time before this next chapter in life.
+      </div></section>
+
+    <section id="testing">
+    <div class="testing">
+    <h2>/ prepare and take standardized tests</h2>
+      <div class="subhead2">
+      Don’t wait until the fall of your senior year to take the SAT and ACT and any other standardized tests.
+      </div>
+      <div class="two">
+        Taking them as early as possible is key to finding out what you need to improve on as well as giving you a better chance to get scholarships depending on how good your scores are. The very last time I would suggest taking either is in October of your senior year; because all applications are due by the first of November, you can then send your scores to your preferred colleges and superscore.
+        <br></br>For preparing -- KhanAcademy is free and a great resource. I personally used it a lot for math, but it can be used for any other subject too. Based on the date of your test, it would set daily reminders to practice a given number of questions, including practice tests which serve as mock exams. The Princeton Review is also a great help. The books and flashcards are reasonable prices, and are a great way to study if you prefer to do your work on paper. I used these to work on my vocabulary and overall reading strategies.
+      </div></section>
+
+    <section id="resume">
+    <div class="resume">
+    <h3>/ prepare your resume</h3>
+      <div class="subhead3">
+        High school students need a resume just as much as college graduates.
+      </div>
+      <div class="three">
+        As a high school student, you may think that developing a resume won’t be necessary until you are out of school and looking for a full-time job. However, we need it just as much as college graduates to showcase our abilities, education, and experiences. Here’s a list of what you should include:
+      <br></br>
+      </div>
+
+      <div class="resume_facts">
+            <div class="row">
+
+            <div class="column"><b>Heading</b><p>
+            / name<br>
+            / telephone number<br>
+            / email<br>
+            / address<br>
+            <p></p>
+            </div>
+
+            <div class="column"><b>Education</b><p>
+            / schools attended<br>
+            / weighted and unweighted<br>
+            GPA if it is over 3.0<br>
+            / academic honors and awards such as honor-roll recognitions<br>or essay writing awards, etc.
+            <p></p>
+            </div>
+
+            <div class="column"><b>Work experience</b><p>
+            / title of position<br>
+            / name of organization<br>
+            / location of work<br>
+            / dates of employment<br>
+            / description of work responsibilities
+            <p></p>
+            </div>
+
+            <div class="column"><b>Extracurriculars and service</b><p>
+            / sports<br>
+            / school clubs<br>
+            / special skills<br>
+            / volunteer work<br>
+            / leadership roles<br>
+            / small summary of each<br>activity
+            <p>
+            </div>
+
+            <div class="column"><b>Summer experiences</b><p>
+            / internships<br>
+            / study abroad<br>
+            / mission trips<br>
+            / description of each
+            <p>
+            </div>
+
+            <div class="column"><b>References</b><p>
+            / list of people that know you<br>well and can be contacted<br>by the recruiter if wanted
+            <p>
+      </div>
+      </div>
+      </div><!-- </div> ends div for row in columns -->
+      </section>
+
+      <section id="research">
+      <div class="research">
+      <h4>/ research colleges and attend college fairs</h4>
+        <div class="subhead4">
+          Start thinking about your near future, whether it involves college, a gap year or jumping right into your career.
+        </div>
+        <div class="four">
+          Start thinking about college if that is what you’re considering for the future. Consider taking a college road tour over spring break to get a feel for schools in a certain area. Make sure the whole range of schools is considered -- public, private, large, and small -- and take a look at what majors they offer, as well as any other factors that you are looking for, and pay close attention to those. College fairs in your city or nearby can be great places for asking questions, being that the people at each table tend to be alumni or current students at the school they are representing. <p>
+          For those looking to be recruited for a sport -- make a highlights video, reach out to coaches and give them your school or club schedule, go to ID camps, schedule appointments. Do not feel bummed if you don’t get a response back -- coaches are incredibly busy, especially during the recruiting season, but could also not be interested. Make a references section in your resume for coaches you’ve previously had before and who could vouch for your athletic abilities as well as your presence on the team or in the sport. And keep in mind that if you are looking at D3 schools, you will not be able to get an athletic scholarship, but can still apply for a number of academic scholarships.
+        </div></section>
+
+    <section id="summer">
+    <div class="summer">
+     <h5>/ maximize your summer</h5>
+       <div class="subhead5">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <div class="five">
+          Colleges want to see that students spent their time wisely on an activity like an internship, job, study abroad, or college program (and yes, there are study abroad options for high schoolers). Although it will be a matter of sacrificing your summer, these programs will be great learning experiences for something that you could look into more in the future as well as look great on college applications.
+        </div></section>
+
+    <section id="time">
+    <div class="time">
+     <h6>/ manage your time</h6>
+       <div class="subhead6">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+       <div class="six">
+         I am a victim of procrastinating all my work. I’ll come home from practice, procrastinate my shower, procrastinate my assignments, and then procrastinate my sleep. There’s no methodology to preventing this other than just doing it. Keep yourself in check and your grades will thank you. With that being said, though, make sure to form good study habits. Depending on when your next test is, do not cram. Spread your studying over a long period of time, or maybe just do a little reviewing of your notes a day.
+       </div></section>
+
+    <section id="self care">
+    <div class="self care">
+    <div class="h7">
+      / take care of yourself</div>
+      <div class="subhead7">
+        You are your number one priority. Set aside everything related to school.
+      </div>
+      <div class="seven">
+        Through all of this, keep in mind that this is your life and thus your future. You are your first priority over all. Take some time everyday and do something you like, something relaxing.
+      </div></section>
+
+    <section id="contact">
+    <div class="contact">
+    <div class="h8">
+      / contact us</div>
+    <div class="subhead8">
+      Get in touch if you need further advice or need help with anything : )
+    </div></section>
+     </body>
+
+  </html>
